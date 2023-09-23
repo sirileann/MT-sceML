@@ -1,0 +1,98 @@
+ckpt_path: /home/siri/PycharmProjects/msc-sirirueegg-sceML/ConvNets/logs/model_v1/version_15/checkpoints/adResNet-epoch=00-val_loss=64633.00.ckpt
+data:
+  batch_size: 8
+  numWorkers: 4
+  root_dir: /home/siri/PycharmProjects/msc-sirirueegg-sceML/ConvNets/data/new_test_dataset
+  test_per: 0.01
+  train_per: 0.85
+model:
+  class_path: models.adapted_resnet.ConvNets
+  init_args:
+    loss_func:
+      class_path: torch.nn.L1Loss
+      init_args:
+        reduce: null
+        reduction: mean
+        size_average: null
+    outputNr: 30
+optimizer:
+  class_path: torch.optim.Adam
+  init_args:
+    amsgrad: false
+    betas:
+    - 0.9
+    - 0.999
+    capturable: false
+    differentiable: false
+    eps: 1.0e-08
+    foreach: null
+    fused: null
+    lr: 0.01
+    maximize: false
+    weight_decay: 0.0
+seed_everything: 6247
+trainer:
+  accelerator: auto
+  accumulate_grad_batches: 1
+  barebones: false
+  benchmark: null
+  callbacks:
+    class_path: pytorch_lightning.callbacks.ModelCheckpoint
+    init_args:
+      auto_insert_metric_name: true
+      dirpath: null
+      every_n_epochs: null
+      every_n_train_steps: null
+      filename: adResNet-{epoch:02d}-{val_loss:.2f}
+      mode: min
+      monitor: val_loss
+      save_last: null
+      save_on_train_epoch_end: null
+      save_top_k: 3
+      save_weights_only: false
+      train_time_interval: null
+      verbose: false
+  check_val_every_n_epoch: 1
+  default_root_dir: null
+  detect_anomaly: false
+  deterministic: null
+  devices: auto
+  enable_checkpointing: null
+  enable_model_summary: null
+  enable_progress_bar: null
+  fast_dev_run: false
+  gradient_clip_algorithm: null
+  gradient_clip_val: null
+  inference_mode: true
+  limit_predict_batches: null
+  limit_test_batches: null
+  limit_train_batches: null
+  limit_val_batches: null
+  log_every_n_steps: null
+  logger:
+    class_path: pytorch_lightning.loggers.TensorBoardLogger
+    init_args:
+      default_hp_metric: true
+      log_graph: true
+      name: model_v1
+      prefix: ''
+      save_dir: logs
+      sub_dir: null
+      version: null
+  max_epochs: 300
+  max_steps: -1
+  max_time: null
+  min_epochs: null
+  min_steps: null
+  num_nodes: 1
+  num_sanity_val_steps: null
+  overfit_batches: 0.0
+  plugins: null
+  precision: 32-true
+  profiler: null
+  reload_dataloaders_every_n_epochs: 0
+  strategy: auto
+  sync_batchnorm: false
+  use_distributed_sampler: true
+  val_check_interval: null
+verbose: true
